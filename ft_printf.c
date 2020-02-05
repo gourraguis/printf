@@ -6,7 +6,7 @@
 /*   By: agourrag <agourrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/03 19:36:38 by agourrag          #+#    #+#             */
-/*   Updated: 2020/02/05 13:23:49 by agourrag         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:13:02 by agourrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,15 @@
 void	debug_var(t_var *var)
 {
 	printf("\n\nwidth: %d\tprecision: %d\tflag: %c\ttype: %c\n\n", var->width, var->precision, var->flag, var->type);
-	free(var);
 }
 
-int	print_helper(char c, int skip_printing)
+void	free_list(void *content)
 {
-	static int output_len;
-
-	if (!output_len)
-		output_len = 0;
-	if (!skip_printing)
+	if (content)
 	{
-		ft_putchar(c);
-		output_len++;
+		free(content);
+		content = NULL;
 	}
-	return (output_len);
 }
 
 int ft_printf(const char *str, ...)
@@ -38,6 +32,7 @@ int ft_printf(const char *str, ...)
 	int		len;
 	char	*tmp;
 
+	g_allocs = ft_lstnew(NULL);
 	va_start(args, str);
 	len = 0;
 	while (*str)
@@ -47,15 +42,15 @@ int ft_printf(const char *str, ...)
 		else
 		{
 			str += extract_var(str, &tmp);
+			ft_lstadd_back(&g_allocs, ft_lstnew(tmp));
 			// printf("\ntmp: |%s|\n", tmp);
 			// debug_var(format_var(tmp, args));
 			// print variable from specs and argument
 			len += print_var(format_var(tmp, args), args);
-			if (tmp)
-				free(tmp);
 		}
 		str++;
 	}
 	va_end(args);
+	ft_lstclear(&g_allocs, free_list);
 	return (len);
 }

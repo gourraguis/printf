@@ -6,7 +6,7 @@
 #    By: agourrag <agourrag@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/03 23:58:14 by agourrag          #+#    #+#              #
-#    Updated: 2020/02/05 13:15:03 by agourrag         ###   ########.fr        #
+#    Updated: 2020/02/05 19:43:09 by agourrag         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ SRC := ft_printf.c \
 	   printers/print_char.c \
 	   printers/print_decimal.c \
 	   printers/print_unsigned.c \
-	   printers/print_hexadecimal.c
+	   printers/print_hexadecimal.c \
+	   printers/print_string.c
 
 OBJ := $(SRC:.c=.o)
 

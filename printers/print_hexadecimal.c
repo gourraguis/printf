@@ -6,7 +6,7 @@
 /*   By: agourrag <agourrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 13:02:16 by agourrag          #+#    #+#             */
-/*   Updated: 2020/02/05 13:23:18 by agourrag         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:44:47 by agourrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	print_hexadecimal(long n, t_var *var)
 	}
 	if (var->flag != '-')
 		ft_putstr(output);
-	if (output)
-		free(output);
+	ft_lstadd_back(&g_allocs, ft_lstnew(output));
 	return (i + len);
 }

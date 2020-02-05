@@ -6,7 +6,7 @@
 /*   By: agourrag <agourrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/05 10:25:52 by agourrag          #+#    #+#             */
-/*   Updated: 2020/02/05 13:29:39 by agourrag         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:43:58 by agourrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@ int	print_var(t_var *var, va_list args)
 		return print_unsigned(va_arg(args, int), var);
 	else if (ft_strchr("xX", var->type))
 		return print_hexadecimal(va_arg(args, long), var);
+	else if (var->type == 's')
+		return print_string(va_arg(args, char*), var);
 	// print string
 	// print pointer
 	else
 		return (0);
 
-	// todo: this isn't working cause we returning before. Maybe the global solution is good after all (create list, add to it, free it at the end)
-	// add pointers to the list once assigned, la7a9ache one var could hold multiple pointers over its lifetime et ga3 khasshom yt free
-	if (var)
-		free(var);
+	ft_lstadd_back(&g_allocs, ft_lstnew(var));
 }

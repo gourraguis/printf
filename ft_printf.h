@@ -6,7 +6,7 @@
 /*   By: agourrag <agourrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/04 00:08:39 by agourrag          #+#    #+#             */
-/*   Updated: 2020/02/05 13:15:03 by agourrag         ###   ########.fr       */
+/*   Updated: 2020/02/05 19:43:18 by agourrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ typedef	struct	s_var
 	char	type;
 }			t_var;
 
+t_list	*g_allocs;
+
 int ft_printf(const char *str, ...);
 
 int	extract_var(const char *str, char **var);
@@ -39,5 +41,6 @@ int	print_char(char c, t_var *var);
 int	print_decimal(int n, t_var *var);
 int	print_unsigned(unsigned int n, t_var *var);
 int	print_hexadecimal(long n, t_var *var);
+int	print_string(char *str, t_var *var);
 
 #endif
